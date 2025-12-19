@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Birthday Surprise 🎉</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Playpen Sans', cursive;
+    background-color: #FF7F7F;
+    color: #fffaf0;
+    height: 100vh;
+    overflow: hidden;
+    text-align: center;
+    position: relative;
+}
+
+/* Pages stacked absolutely */
+.page {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+    pointer-events: none; /* Prevent clicking hidden pages */
+}
+
+.page.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* Page 1 title */
+.top-message {
+    position: absolute;
+    top: 23%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 0 20px;
+}
+
+/* Button */
+button {
+    padding: 12px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    background-color: #fffaf0;
+    color: #FF4F7B;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+/* Page 2 */
+#page2 h1 {
+    font-size: 1.8rem;
+    padding: 0 20px;
+}
+
+sub {
+    font-size: 0.9rem;
+    color: #ffe6e6;
+}
+
+/* Page 3 */
+.final-message {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.small-text {
+    margin-top: 18px;
+    font-size: 0.9rem;
+    color: #ffe6e6;
+}
+
+/* Floating emojis */
+.emoji {
+    position: absolute;
+    font-size: 2rem;
+    opacity: 0.6;
+    animation: float 8s linear infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(100vh) rotate(0deg); }
+    100% { transform: translateY(-10vh) rotate(360deg); }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Floating emojis -->
+<div id="emojis"></div>
+
+<!-- Page 1 -->
+<div id="page1" class="page active">
+    <div class="top-message">🎂 HAPPY BIRTHDAY MY MAHARANI JI 🎉</div>
+    <button id="clickBtn">Click Me!</button>
+</div>
+
+<!-- Page 2 -->
+<div id="page2" class="page">
+    <h1>🎈 A VERY SPECIAL DAY FOR ME 🎈 <br><sub>21st December</sub></h1>
+</div>
+
+<!-- Page 3 -->
+<div id="page3" class="page">
+    <div class="final-message">
+        <h1>
+            Happyy birthday madam jii.. May your day be the best and happy.. always have that prettiest smile in the whole world on your face always.. thank you for always keeping me happy and make me smile even in a bad situation.. I wish our friendship never sees an end and its forever and ever.. Will always be grateful for making you my friend yaar🫂.. And remember there is a boy who cares for you more than he cares for himself( Its me tho😁 )
+        </h1>
+        <div class="medium-text">
+            I promise to always be with u being ur supporter.. love you so much 🫶🏼
+        </div>
+    </div>
+</div>
+
+<script>
+const clickBtn = document.getElementById("clickBtn");
+const page1 = document.getElementById("page1");
+const page2 = document.getElementById("page2");
+const page3 = document.getElementById("page3");
+
+clickBtn.addEventListener("click", () => {
+    // Fade out page1
+    page1.classList.remove("active");
+    // Fade in page2 after small delay
+    setTimeout(() => page2.classList.add("active"), 50);
+
+    // After 3.5s, fade page2 out and page3 in
+    setTimeout(() => {
+        page2.classList.remove("active");
+        page3.classList.add("active");
+    }, 3500);
+});
+
+/* Floating emojis */
+const emojiList = ["🎉","🎂","💖","🎈","✨","🎁"];
+const emojiContainer = document.getElementById("emojis");
+
+for (let i = 0; i < 20; i++) {
+    const e = document.createElement("div");
+    e.className = "emoji";
+    e.textContent = emojiList[Math.floor(Math.random() * emojiList.length)];
+    e.style.left = Math.random() * 100 + "vw";
+    e.style.fontSize = (1.5 + Math.random() * 2) + "rem";
+    e.style.animationDuration = (6 + Math.random() * 5) + "s";
+    emojiContainer.appendChild(e);
+}
+</script>
+
+</body>
+</html>
